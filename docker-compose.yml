@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  stock_analyser_service:
+    build:
+      context: ./stock_analyser_service
+      dockerfile: Dockerfile
+    volumes:
+      - ./stock_analyser_service:/Stock_Analyser_dockerized:cached
+    ports:
+      - "8000:8000"
+    image: stock_analyser_service:stock_analyser
+    container_name: stock_analyser_service
