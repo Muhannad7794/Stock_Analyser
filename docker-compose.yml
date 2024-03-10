@@ -4,12 +4,31 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    
     volumes:
       - .:/Stock_Analyser_dockerized:cached
-      
-
     ports:
       - "8000:8000"
     image: stock_analyser_service:stock_analyser
     container_name: stock_analyser_service
+    depends_on:
+      - db
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+
+  db:
+    image: mysql:latest
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - "3307:3306"
+    container_name: mysql_db_service
+
+volumes:
+  mysql-data:
