@@ -27,7 +27,9 @@
 				"github.vscode-github-actions",
 				"ZainChen.json",
 				"ms-python.python",
-				"mechatroner.rainbow-csv"
+				"mechatroner.rainbow-csv",
+				"ms-python.black-formatter",
+				"mikoz.black-py"
 			]
 		}
 	},
